@@ -1,0 +1,14 @@
+-php artisan make:model [ NAME-FILE ] -m (-m is for create an default migration file)
+*create eschema: look at :https://laravel.com/docs/5.3/migrations
+
+/*
+ -createdb [ NAME-DB ]
+ -psql -d [ NAME-DB ]
+*/
+
+-php artisan migrate:install
+-php artisan migrate
+
+/*  Seeders [ test data ] */
+-php artisan make:seeder [ NAME-FILE ]
+-php artisan db:seed
