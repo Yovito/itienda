@@ -1,4 +1,4 @@
-# Itienda!  sample of an ecommerce made with laravel
+# Itienda! - sample of an ecommerce made with Laravel
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-THis is a common ecommerce made with laravel framework for sample projects.
+This is a common ecommerce made with Laravel 5.3 Version Framework for sample  projects.
 
 ## Contributing
 
