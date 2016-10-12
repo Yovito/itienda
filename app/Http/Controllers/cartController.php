@@ -18,7 +18,9 @@ class cartController extends Controller{
     }
     // show cart
     public function show(){
-      return dd(\Session::get('cart'));
+      $cart = \Session::get('cart');
+
+      return view( 'store.cart', compact('cart') );
     }
 
     // add item
@@ -32,7 +34,27 @@ class cartController extends Controller{
    }
 
     // delete item
+    public function delete(Product $product){
+      $cart = \Session::get('cart');
+      unset($cart[$product->slug]);
+      \Session::put('cart', $cart);
+
+      return redirect()->route('cart-show');
+    }
+
+    public function trash(){
+      \Session::forget('cart');
+
+      return redirect()->route('cart-show');
+    }
 
     // update item
+    public function update (Product $product, $quantity){
+      $cart = \Session::get('cart');
+      $cart[$product->slug]->quantity = $quantity;
+      \Session::put('cart', $cart);
+
+      return redirect()->route('cart-show');
+    }
 
 }

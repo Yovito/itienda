@@ -1,0 +1,19 @@
+
+/* ..:: SLIDER  ::.. */
+
+.navbar{
+  margin-bottom: 0;
+}
+
+/* ..:: CART ::.. */
+
+.table-cart{
+  background: #fff;
+  border-radius: 1em;
+  margin-bottom: 30px;
+  padding: 1em;
+}
+
+.table-cat img{
+  width: 50px;
+}

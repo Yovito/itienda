@@ -42,3 +42,18 @@ Route::get('/', function () {
    'as' => 'cart-add',
    'uses' => 'cartController@add'
  ]);
+
+ Route::get('cart/delete/{product}',[
+   'as' => 'cart-delete',
+   'uses' => 'cartController@delete'
+ ]);
+
+ Route::get('cart/trash',[
+   'as' => 'cart-trash',
+   'uses' => 'cartController@trash'
+ ]);
+
+ Route::get('cart/update/{product}/{quatity}',[
+   'as' => 'cart-update',
+   'uses' => 'cartController@update'
+ ]);
