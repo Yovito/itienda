@@ -57,3 +57,8 @@ Route::get('/', function () {
    'as' => 'cart-update',
    'uses' => 'cartController@update'
  ]);
+
+ Route::get('cart/update/{product}',[
+   'as' => 'cart-cartd',
+   'uses' => 'cartController@cartd'
+ ]);

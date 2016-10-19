@@ -33,9 +33,15 @@
                   <td>{{ $item->name }}</td>
                   <td>S/. {{ number_format( $item->price, 2 ) }}</td>
                   <td>
-                    <input type="number" min="1" max="100" name="name" value="{{ $item->quantity }}" id="rpoduct_{{ $item->id }}">
-                    <a href="" class="btn btn-warning btn-update-item" data-href="{{ route('cart-update', $item->slug) }}" data-id="{{ $item->id }}"> 
-                      <i class="fa fa-refresh"></i></a>
+                    <input type="number" min="1" max="100"
+                    value="{{ $item->quantity }}"
+                    id="product_{{ $item->id }}" name="name" >
+
+                    <a href="#" class="btn btn-warning btn-update-item"
+                      data-href="{{ route('cart-cartd', [$item->slug]) }}"
+                      data-id="{{ $item->id }}">
+                      <i class="fa fa-refresh"></i>
+                    </a>
                   </td>
                   <td>T- {{ number_format( $item->price * $item->quantity, 2 ) }}</td>
                   <td>
@@ -49,7 +55,12 @@
               <h1>Nothig to show!</h1>
             @endif
           </tbody>
-        </table>
+        </table><hr>
+        <h3>
+          <span>
+            TOTAL:  {{ number_format($total, 2 ) }}
+          </span>
+        </h3>
       </div>
       <p>
         <a href="{{ route('catalog') }}" class="btn btn-primary">
