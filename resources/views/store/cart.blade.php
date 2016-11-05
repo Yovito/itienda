@@ -33,12 +33,14 @@
                   <td>{{ $item->name }}</td>
                   <td>S/. {{ number_format( $item->price, 2 ) }}</td>
                   <td>
-                    <input type="number" min="1" max="100"
-                    value="{{ $item->quantity }}"
-                    id="product_{{ $item->id }}" name="name" >
+                    <input type="number"
+                      min="1" max="100"
+                      value="{{ $item->quantity }}"
+                      id="product_{{ $item->id }}" name="name" >
 
-                    <a href="#" class="btn btn-warning btn-update-item"
-                      data-href="{{ route('cart-cartd', [$item->slug]) }}"
+                    <a href="#"
+                      class="btn btn-warning btn-update-item"
+                      data-href="{{ route('cart-refresh', $item->slug) }}"
                       data-id="{{ $item->id }}">
                       <i class="fa fa-refresh"></i>
                     </a>

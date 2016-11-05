@@ -43,7 +43,7 @@ class cartController extends Controller{
     }
 
     // update item
-    public function update (Product $product, $quantity){
+    public function update(Product $product, $quantity){
       $cart = \Session::get('cart');
       $cart[$product->slug]->quantity = $quantity;
       \Session::put('cart', $cart);
@@ -52,19 +52,12 @@ class cartController extends Controller{
     }
 
     // update item
-    public function cartd(Product $product){
+    public function refresh(Product $product){
       $cart = \Session::get('cart');
       \Session::put('cart', $cart);
 
       return redirect()->route('cart-show');
     }
-
-    // public function upgrade(Product $product, Product $quantity){
-    //   $upg = \Session::get('cart');
-    //   \Session::put('cart', $cart);
-    //
-    //   return redirect()->route('cart-show');
-    // }
 
     public function trash(){
       \Session::forget('cart');

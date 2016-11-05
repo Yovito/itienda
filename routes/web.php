@@ -59,6 +59,16 @@ Route::get('/', function () {
  ]);
 
  Route::get('cart/update/{product}',[
-   'as' => 'cart-cartd',
-   'uses' => 'cartController@cartd'
+   'as' => 'cart-refresh',
+   'uses' => 'cartController@refresh'
  ]);
+
+
+
+/****************************************************
+ *                                                  *
+ *                    ADMIN                         *
+ *                                                  *
+ ***************************************************/
+
+ Route::resource('admin/category', 'Admin\categoryController');
