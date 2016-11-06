@@ -1,18 +1,27 @@
 @extends('store.template')
 @section('content')
 
-  @foreach ($products as $key)
-    <div class="product">
-      <h3>{{$key->name}}</h3>
-      <img src="{{ $key->image }}" width=250>
-      <div class="product-info">
-        <p>{{$key->extract}}</p>
-        <p>Precio: {{ number_format($key->price, 2) }}</p>
-        <p>
-          <a href="{{ route('cart-add', $key->slug) }}"><li>Buy</li></a>
-          <a href="{{ route('product-detail', $key->slug) }}">Details</a>
-        </p>
-      </div>
+  @include('store.commons.slider')
+
+  <div class="container text-center">
+    <div id="products">
+      @foreach ($products as $product)
+        <div class="product white-panel">
+          <h3>{{$product->name}}</h3>
+          <img src="{{ $product->image }}" width=250>
+          <div class="product-info">
+            <p>{{$product->extract}}</p>
+            <h3><span class="label label-success">
+              Precio: {{ number_format($product->price, 2) }}
+            </span></h3>
+            <p>
+              <a class="btn btn-warning" href="{{ route('cart-add', $product->slug) }}"><i class="fa fa-cart-plus"></i>Buy</a>
+              <a class="btn btn-primary" href="{{ route('product-detail', $product->slug) }}"><i class="fa fa-chevron-circle-right"></i>Details</a>
+            </p>
+          </div>
+        </div>
+      @endforeach
     </div>
-  @endforeach
+  </div>
+
 @endsection
