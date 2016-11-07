@@ -12,3 +12,7 @@
 /*  Seeders [ test data ] */
 -php artisan make:seeder [ NAME-FILE ]
 -php artisan db:seed
+
+
+/* If necesary to rollback */
+-php artisan migrate:refresh --seed

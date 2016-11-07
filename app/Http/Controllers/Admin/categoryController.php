@@ -39,9 +39,23 @@ class categoryController extends Controller{
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
-  {
+  public function store(Request $request){
       //
+      $this->validate($request,[
+        'name' => 'required|unique:categores|max:255',
+        'color' => 'required'
+      ]);
+
+      $category = Category::create([
+        'name' => $request->('name'),
+        'slug' => str_slug($request->('name')),
+        'description' => $request->get('description'),
+        'color' => $request->get('color')
+      ]);
+
+      $message = $category ? 'Category added correctly' : 'Error: not added!';
+
+      return redirect()->route('Admin.category.index')->with('message', $message);
   }
 
   /**
@@ -50,9 +64,9 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
-  {
+  public function show($id){
       //
+      return $category;
   }
 
   /**
@@ -61,9 +75,9 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
-  {
+  public function edit($id){
       //
+      return view('Admin.category.edit', compact('category'));
   }
 
   /**
@@ -73,8 +87,7 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
-  {
+  public function update(Request $request, $id){
       //
   }
 

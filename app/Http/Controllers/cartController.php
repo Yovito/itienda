@@ -81,12 +81,14 @@ class cartController extends Controller{
 
     // Order Detail
     public function orderDetail(){
-      if (count(\Session::get('cart')) <= 0)return redirect()->route('catalog') {
+      if (count(\Session::get('cart')) <= 0)
+          return redirect()->route('catalog');
+
         $cart = \Session::get('cart');
         $total = $this->total();
 
         return view('store.order-detail', compact('cart', 'total'));
       }
-    }
+    
 
 }
