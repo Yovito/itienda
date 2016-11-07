@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Product;
+use DeepCopy\Filter\ReplaceFilter;
 
 class cartController extends Controller{
 
@@ -18,7 +19,7 @@ class cartController extends Controller{
     }
     // show cart
     public function show(){
-      $cart = \Session::get('cart');
+      $cart = \Session::get('cart'); //create ande session variable session for cart
       $total = $this->total();
       return view( 'store.cart', compact('cart', 'total') );
     }
@@ -54,13 +55,14 @@ class cartController extends Controller{
     // update item
     public function refresh(Product $product){
       $cart = \Session::get('cart');
+      $cart[$product->slug]->quantity = $quantity;
       \Session::put('cart', $cart);
 
       return redirect()->route('cart-show');
     }
 
     public function trash(){
-      \Session::forget('cart');
+      \Session::forget('cart'); //erase everything inside this var
 
       return redirect()->route('cart-show');
     }
@@ -75,6 +77,16 @@ class cartController extends Controller{
       }
 
       return $total;
+    }
+
+    // Order Detail
+    public function orderDetail(){
+      if (count(\Session::get('cart')) <= 0)return redirect()->route('catalog') {
+        $cart = \Session::get('cart');
+        $total = $this->total();
+
+        return view('store.order-detail', compact('cart', 'total'));
+      }
     }
 
 }

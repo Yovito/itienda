@@ -63,6 +63,12 @@ Route::get('/', function () {
    'uses' => 'cartController@refresh'
  ]);
 
+ Route::get('order-detail', [
+   'middleware' => 'auth:user',
+   'as' => 'order-detail',
+   'uses' => 'CartController@orderDetail'
+ ]);
+
 
 
 /****************************************************
