@@ -77,4 +77,8 @@ Route::get('/', function () {
  *                                                  *
  ***************************************************/
 
- Route::resource('admin/category', 'Admin\categoryController');
+Route::resource('admin/category', 'Admin\categoryController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
