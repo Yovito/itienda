@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
- Route::get('store', [
+ Route::get('/', [
    'as' => 'catalog',
    'uses' => 'storeController@index'
  ]);
@@ -26,13 +26,16 @@ Route::get('/', function () {
  ]);
 
 
- // ..:: CART ::..  //
-
 // Dependency Injection : for repetitive functions
  Route::bind('product', function($slug){
    return App\Product::where('slug', $slug)->first();
  });
 
+Route::bind('user', function($user){
+  return App\User::find($user);
+});
+
+ // ..:: CART ::..  //
  Route::get('cart/show', [
    'as' => 'cart-show',
    'uses' => 'cartController@show'
@@ -64,9 +67,9 @@ Route::get('/', function () {
  ]);
 
  Route::get('order-detail', [
-   'middleware' => 'auth:user',
+   'middleware' => 'auth:authenticate',
    'as' => 'order-detail',
-   'uses' => 'CartController@orderDetail'
+   'uses' => 'cartController@orderDetail'
  ]);
 
 
@@ -77,7 +80,17 @@ Route::get('/', function () {
  *                                                  *
  ***************************************************/
 
-Route::resource('admin/category', 'Admin\categoryController');
+//Route::resource('admin/category', 'Admin\categoryController');
+
+Route::get('auth/login', [
+  'as' => 'logout',
+  'uses' => 'Auth\LoginController@login'
+]);
+
+Route::get('auth/register', [
+	'as' => 'register-get',
+	'uses' => 'Auth\RegisterController@register'
+]);
 
 Auth::routes();
 

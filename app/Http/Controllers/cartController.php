@@ -72,7 +72,6 @@ class cartController extends Controller{
       $cart = \Session::get('cart');
       $total = 0;
       foreach ($cart as $item) {
-        # code...
         $total += $item->price * $item->quantity;
       }
 
@@ -89,6 +88,6 @@ class cartController extends Controller{
 
         return view('store.order-detail', compact('cart', 'total'));
       }
-    
+
 
 }
