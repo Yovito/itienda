@@ -7,35 +7,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('catalog') }}">Brand</a>
+      {{-- {!! link_to('admin/home', "FiSO", $attributes = array('class' => 'navbar-brand main-title')) !!} --}}
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <p>My Itiendita</p>
+      <p class="navbar-text"><i class="fa fa-dashboard"></i> Dashboard</p>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="{{ route('cart-show')}}"><i class="fa fa-shopping-cart"></i></a></li>
-        <li><a href="#">Catalog</a></li>
+        <li><a href="#">Categorias</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Pedidos</a></li>
+        <li><a href="#">Usuarios</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            {{-- <i class="fa fa-user"></i> {{ Auth::user()->user }} <span class="caret"></span> --}}
+          </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="{{ url('/logout') }}">Finalizar sesión</a></li>
           </ul>
         </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
       </ul>
     </div>
   </div>

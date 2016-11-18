@@ -42,20 +42,22 @@ class categoryController extends Controller{
   public function store(Request $request){
       //
       $this->validate($request,[
-        'name' => 'required|unique:categores|max:255',
+        'name' => 'required|unique:categories|max:255',
         'color' => 'required'
       ]);
-
       $category = Category::create([
-        'name' => $request->('name'),
-        'slug' => str_slug($request->('name')),
-        'description' => $request->get('description'),
-        'color' => $request->get('color')
+          'name' => $request->get('name'),
+          //dublicates the name for the slug
+          'slug' => str_slug($request->get('name')),//why? because there's no slug on the view
+          'description' => $request->get('description'),
+          'color' => $request->get('color')
       ]);
+
 
       $message = $category ? 'Category added correctly' : 'Error: not added!';
 
-      return redirect()->route('Admin.category.index')->with('message', $message);
+      // route method calling web.php resource
+      return redirect()->route('admin.category.index')->with('message', $message);
   }
 
   /**
@@ -64,7 +66,7 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id){
+  public function show(Category $category){
       //
       return $category;
   }
@@ -75,7 +77,7 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id){
+  public function edit(Category $category){
       //
       return view('Admin.category.edit', compact('category'));
   }
@@ -87,8 +89,12 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id){
+  public function update(Request $request, Category $id){
       //
+      $this->validate($request,[
+        'name' => 'required|unique:categories|max:255',
+        'color' => 'required'
+      ]);
   }
 
   /**

@@ -11,6 +11,20 @@
 |
 */
 
+// Dependency Injection : for repetitive functions
+ Route::bind('product', function($slug){
+   return App\Product::where('slug', $slug)->first();
+ });
+
+ // Category dependency injection
+ Route::bind('category', function($category){
+     return App\Category::find($category);
+ });
+
+Route::bind('user', function($user){
+  return App\User::find($user);
+});
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -25,15 +39,6 @@
    'uses' => 'storeController@show'
  ]);
 
-
-// Dependency Injection : for repetitive functions
- Route::bind('product', function($slug){
-   return App\Product::where('slug', $slug)->first();
- });
-
-Route::bind('user', function($user){
-  return App\User::find($user);
-});
 
  // ..:: CART ::..  //
  Route::get('cart/show', [
@@ -67,11 +72,10 @@ Route::bind('user', function($user){
  ]);
 
  Route::get('order-detail', [
-   'middleware' => 'auth:authenticate',
+   'middleware' => 'auth',
    'as' => 'order-detail',
    'uses' => 'cartController@orderDetail'
  ]);
-
 
 
 /****************************************************
@@ -80,7 +84,16 @@ Route::bind('user', function($user){
  *                                                  *
  ***************************************************/
 
-//Route::resource('admin/category', 'Admin\categoryController');
+Route::resource('admin/category', 'Admin\categoryController', [
+  'names' => [
+        'index'   =>  'admin.category.index',
+        'create'  =>  'admin.category.create',
+        'edit'    =>  'admin.category.edit',
+        'store'   =>  'admin.category.store',
+        'destroy' =>  'admin.category.destroy'
+      ]
+]);
+
 
 Route::get('auth/login', [
   'as' => 'logout',

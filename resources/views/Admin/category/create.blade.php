@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('Admin.template')
 
 @section('content')
   <div class="container text-center">
@@ -13,11 +13,11 @@
       <div class="col-md-offset-3 col-md-6">
         <div class="page">
           @if (count($errors)>0)
-            @include('admin.commons.errors')
+            @include('Admin.commons.errors')
           @endif
 
-          {!! Form::open(['route'=>'Admin.category.store']) !!}
-
+          {!! Form::open(['route'=>'admin.category.store']) !!}
+          {{ csrf_field() }}
           <div class="form-group">
               <label for="name">Nombre</label>
               {!!
