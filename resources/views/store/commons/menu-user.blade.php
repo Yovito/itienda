@@ -11,6 +11,7 @@
                {{ csrf_field() }}
            </form>
       </li>
+      <li><a href="{{ url('/admin/category') }}">Admin</a></li>
     </ul>
   </li>
 @else

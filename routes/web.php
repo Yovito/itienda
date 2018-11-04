@@ -31,50 +31,50 @@ Route::bind('user', function($user){
 
  Route::get('/', [
    'as' => 'catalog',
-   'uses' => 'storeController@index'
+   'uses' => 'StoreController@index'
  ]);
 
  Route::get('product/{slug}', [
    'as' => 'product-detail',
-   'uses' => 'storeController@show'
+   'uses' => 'StoreController@show'
  ]);
 
 
  // ..:: CART ::..  //
  Route::get('cart/show', [
    'as' => 'cart-show',
-   'uses' => 'cartController@show'
+   'uses' => 'CartController@show'
  ]);
 
  Route::get('cart/add/{product}',[
    'as' => 'cart-add',
-   'uses' => 'cartController@add'
+   'uses' => 'CartController@add'
  ]);
 
  Route::get('cart/delete/{product}',[
    'as' => 'cart-delete',
-   'uses' => 'cartController@delete'
+   'uses' => 'CartController@delete'
  ]);
 
  Route::get('cart/trash',[
    'as' => 'cart-trash',
-   'uses' => 'cartController@trash'
+   'uses' => 'CartController@trash'
  ]);
 
  Route::get('cart/update/{product}/{quatity}',[
    'as' => 'cart-update',
-   'uses' => 'cartController@update'
+   'uses' => 'CartController@update'
  ]);
 
  Route::get('cart/update/{product}',[
    'as' => 'cart-refresh',
-   'uses' => 'cartController@refresh'
+   'uses' => 'CartController@refresh'
  ]);
 
  Route::get('order-detail', [
    'middleware' => 'auth',
    'as' => 'order-detail',
-   'uses' => 'cartController@orderDetail'
+   'uses' => 'CartController@orderDetail'
  ]);
 
 
@@ -84,26 +84,18 @@ Route::bind('user', function($user){
  *                                                  *
  ***************************************************/
 
-Route::resource('admin/category', 'Admin\categoryController', [
+Route::resource('admin/category', 'Admin\CategoryController', [
   'names' => [
         'index'   =>  'admin.category.index',
         'create'  =>  'admin.category.create',
         'edit'    =>  'admin.category.edit',
+        'update'  =>  'admin.category.update',
         'store'   =>  'admin.category.store',
         'destroy' =>  'admin.category.destroy'
       ]
 ]);
 
-
-Route::get('auth/login', [
-  'as' => 'logout',
-  'uses' => 'Auth\LoginController@login'
-]);
-
-Route::get('auth/register', [
-	'as' => 'register-get',
-	'uses' => 'Auth\RegisterController@register'
-]);
+Route::resource('admin/product', 'Admin\ProductController');
 
 Auth::routes();
 

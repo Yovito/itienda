@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
 
-class categoryController extends Controller{
+class CategoryController extends Controller{
 
   /**
    * Display a listing of the resource.
@@ -45,6 +45,7 @@ class categoryController extends Controller{
         'name' => 'required|unique:categories|max:255',
         'color' => 'required'
       ]);
+
       $category = Category::create([
           'name' => $request->get('name'),
           //dublicates the name for the slug
@@ -53,11 +54,11 @@ class categoryController extends Controller{
           'color' => $request->get('color')
       ]);
 
-
       $message = $category ? 'Category added correctly' : 'Error: not added!';
 
       // route method calling web.php resource
       return redirect()->route('admin.category.index')->with('message', $message);
+
   }
 
   /**
@@ -89,12 +90,20 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Category $id){
+  public function update(Request $request, Category $category){
       //
-      $this->validate($request,[
-        'name' => 'required|unique:categories|max:255',
+      $this->validate($request, [
+        'name' => 'required|max:255',
         'color' => 'required'
       ]);
+
+      $category->fill($request->all());
+      $category->slug = str_slug($request->get('name'));
+
+      $updated = $category->save();
+      $message = $updated ? 'Categoría actualizada correctamente!' : 'La Categoría NO pudo actualizarse!';
+
+      return redirect()->route('admin.category.index')->with('message', $message);
   }
 
   /**
@@ -103,9 +112,12 @@ class categoryController extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
-  {
+  public function destroy(Category $id){
       //
+      $deleted = $id->delete();
+      $message = $deleted ? 'Categoría eliminada correctamente!' : 'La Categoría NO pudo eliminarse!';
+
+      return redirect()->route('admin.category.index')->with('message', $message);
   }
 
 }

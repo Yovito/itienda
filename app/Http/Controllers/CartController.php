@@ -8,13 +8,15 @@ use App\Http\Requests;
 use App\Product;
 use DeepCopy\Filter\ReplaceFilter;
 
-class cartController extends Controller{
+class CartController extends Controller{
 
     // contructor
     public function __construct(){
 
       if( ! \Session::has('cart') ){
         \Session::put( 'cart', array() );
+      }else{
+        return false;
       }
     }
     // show cart

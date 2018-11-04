@@ -9,19 +9,19 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="http://res.cloudinary.com/dm3xjx1bn/image/upload/v1478405767/batman-vs-superman-videojuego_yi4s6w.jpg" alt="slide1">
+      <img src="https://res.cloudinary.com/dm3xjx1bn/image/upload/v1541357767/slide/deadpool.jpg" alt="slide1">
       <div class="carousel-caption">
         ...
       </div>
     </div>
     <div class="item">
-      <img src="http://res.cloudinary.com/dm3xjx1bn/image/upload/v1478405766/deapool_gqkvew.jpg" alt="slide2">
+      <img src="https://res.cloudinary.com/dm3xjx1bn/image/upload/v1541357968/slide/2310.jpg" alt="slide2">
       <div class="carousel-caption">
         ...
       </div>
     </div>
     <div class="item">
-      <img src="http://res.cloudinary.com/dm3xjx1bn/image/upload/v1478406385/los-simpsons-2915_roittm.jpg" alt="slide3">
+      <img src="https://res.cloudinary.com/dm3xjx1bn/image/upload/v1541357427/slide/descarga.jpg" alt="slide3">
       <div class="carousel-caption">
         ...
       </div>

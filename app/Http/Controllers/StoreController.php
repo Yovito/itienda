@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
 
-class storeController extends Controller{
+class StoreController extends Controller{
 
-    //storeController for all maintinence stock
+    //StoreController for all maintinence stock
    public function index(){
      $products = Product::all();
      return view('store.index', compact('products'));
